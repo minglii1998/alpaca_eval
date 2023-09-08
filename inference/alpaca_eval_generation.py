@@ -56,7 +56,8 @@ def main():
     import yaml
     model_configs_path = 'src/alpaca_eval/models_configs'
     model_configs_path_current = os.path.join(model_configs_path,args.model_name_tag)
-    os.mkdir(model_configs_path_current)
+    if not os.path.exists(model_configs_path_current):
+        os.mkdir(model_configs_path_current)
 
     with open("inference/model_configs_example.yaml", 'r') as stream:
         data = yaml.safe_load(stream)
@@ -109,7 +110,10 @@ def main():
             new_point = {}
             new_point["dataset"] = point["dataset"]
             new_point["instruction"] = point["instruction"]
-            new_point["output"] = outputs.split("Response:")[1]
+            if args.prompt in ['alpaca','wiz']:
+                new_point["output"] = outputs.split("Response:")[1]
+            elif args.prompt == 'vicuna':
+                new_point["output"] = outputs.split("ASSISTANT:")[1]
             new_point["generator"] = args.model_name_tag
 
             results.append(new_point)
