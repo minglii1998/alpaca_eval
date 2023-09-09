@@ -1,3 +1,6 @@
+Please directly run on the fschat enviraonment, because we need to do the inference as well.
+pip install alpaca-eval
+
 After installing the necessary envriment, set your openai keys here:
 src/alpaca_eval/constants.py
 
