@@ -1,0 +1,13 @@
+dolly_v2:
+  completions_kwargs:
+    do_sample: true
+    max_new_tokens: 2048
+    model_kwargs:
+      torch_dtype: bfloat16
+    model_name: ./dolly_v2
+    temperature: 0.7
+    top_p: 1.0
+  fn_completions: huggingface_local_completions
+  link: ''
+  pretty_name: dolly_v2
+  prompt_template: vicuna-7b/prompt.txt

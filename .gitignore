@@ -173,3 +173,4 @@ cython_debug/
 
 scripts_slurm*
 workspace*
+trained_models*

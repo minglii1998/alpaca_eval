@@ -39,6 +39,7 @@ def parse_args():
         help="Path to pretrained model or model identifier from huggingface.co/models.",
         required=False,
     )
+    parser.add_argument("--do_eval", type=str, default='True')
     parser.add_argument("--temperature", type=float, default=0.7, help="")
     parser.add_argument("--top_p", type=float, default=1.0, help="")
     parser.add_argument("--do_sample", type=bool, default=True, help="")
@@ -128,7 +129,8 @@ def main():
         json.dump(results, f, indent=4)
 
     # Finish inference, can do evaluation now
-    os.system("alpaca_eval --model_outputs {} --annotators_config 'alpaca_eval_gpt4' ".format(save_path))
+    if args.do_eval == 'True':
+        os.system("alpaca_eval --model_outputs {} --annotators_config 'alpaca_eval_gpt4' ".format(save_path))
 
 
 if __name__ == "__main__":
